@@ -2,9 +2,9 @@ var joueur = {
     nom : "Hulk",
     description : "Le meilleur du joueur",
     level : 1,
-    pv : 100,
+    pv : 5,
     carac : {
-        force : 8,
+        force : 2,
         agilite : 7,
         intel : 5,
     },
