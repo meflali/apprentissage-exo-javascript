@@ -5,7 +5,7 @@ var templateEnnemi = {
             description: "Maitre du mal",
             level: 1,
             force: 2,
-            pv : 4,
+            pv : 7,
 
             afficherEnnemi: function () {
                 var txt = "Nom : " + this.nom + "\n";
