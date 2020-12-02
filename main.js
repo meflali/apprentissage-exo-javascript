@@ -10,7 +10,9 @@ var venom2 = templateEnnemi.creerVenom();
 LesEnnemis.push(thanos1, thanos2, venom1, venom2);
 
 var choix = 0;
-while (choix !== 9){
+var gameOver = false;
+
+while (choix !== 9 && !gameOver){
     afficheMenu();
     var choix = readline.questionInt("Quel est votre choix?");
     switch (choix){
@@ -44,13 +46,31 @@ function afficherEnnemis(){
 }
 
 function returnEnnemiAleatoire(){
-    var ennemiAaleatoire = Math.floor(Math.random() * LesEnnemis.length)
-    return LesEnnemis[ennemiAaleatoire];
+    var ennemiAleatoire = Math.floor(Math.random() * LesEnnemis.length)
+    return LesEnnemis[ennemiAleatoire];
 }
 
 
 function combattreEnnemi(){
     var ennemiAlea = returnEnnemiAleatoire()
     ennemiAlea.afficherEnnemi();
+    joueur.pv -= ennemiAlea.force;
+    ennemiAlea.pv -= joueur.carac.force;
+
+    if(ennemiAlea.pv <= 0){
+        console.log("L'ennemi est mort");
+        joueur.levelUp();
+
+    }
+    if (joueur.pv <= 0){
+        console.log("Tu es mort");
+        gameOver = true;
+    }
 }
 
+function detruireUnEnnemi(numero){
+    for(var i = numero ; i < LesEnnemis.length; i++){
+        LesEnnemis[i] = LesEnnemis[i+1];
+    }
+    LesEnnemis.pop();
+}
